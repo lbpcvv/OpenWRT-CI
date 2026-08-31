@@ -62,3 +62,8 @@ if [[ "${WRT_TARGET^^}" == *"QUALCOMMAX"* ]]; then
 		echo "qualcommax set up nowifi successfully!"
 	fi
 fi
+# 修改插件源：添加 luci-app-athena-led 插件
+rm -rf package/luci-app-athena-led
+git clone https://github.com/haipengno1/luci-app-athena-led package/luci-app-athena-led
+# 自动在 menuconfig 中将其勾选为编译进固件 (* 代表 y，如果要选为模块则改为 =m)
+echo 'CONFIG_PACKAGE_luci-app-athena-led=y' >> .config
